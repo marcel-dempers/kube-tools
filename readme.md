@@ -31,5 +31,5 @@ You can persist `kubeconfig` by mounting a volume.
 I also mount my local directory into the container so i can pass `YAML` around to `kubectl`
 
 ```
-docker run -it --name kube-tools -v $PWD:/var/lib/src -v /C/Users/docker/kube-tools:/root/.kube --rm -p 8001:8001 kube-tools bash
+docker run -it --name kube-tools -v $PWD:/var/lib/src -v /C/Users/docker/kube-tools:/root/.kube --rm -p 8001:8001 --workdir /var/lib/src kube-tools bash
 ```
