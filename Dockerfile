@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install --no-install-recommends --no-install-sugge
         libssl-dev \ 
         libffi-dev \
         python-dev \
+        nano \
         build-essential \
 	&& rm -rf /var/lib/apt/lists/*
 
