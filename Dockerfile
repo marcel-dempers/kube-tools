@@ -20,14 +20,15 @@ RUN mv ./kubectl /usr/local/bin/kubectl
 RUN wget https://bootstrap.pypa.io/get-pip.py --secure-protocol=auto \
     && python ./get-pip.py
 RUN pip install --upgrade pip wheel jmespath-terminal urllib3
-RUN pip install azure-cli==2.0.6
-RUN export PATH=$PATH:~/.local/bin
 
 #PATCH URL LIB -> https://github.com/Azure/azure-cli/issues/3498
 RUN cp -r  /usr/local/lib/python2.7/dist-packages/urllib3 /usr/local/lib/python2.7/site-packages/ \ 
 && cp -r /usr/local/lib/python2.7/dist-packages/urllib3 /usr/lib/python2.7/dist-packages/ \
 && cp -r /usr/local/lib/python2.7/dist-packages/urllib3 /usr/lib/python2.7/site-packages/ \
 && pip install --upgrade urllib3
+
+RUN pip install azure-cli==2.0.24
+RUN export PATH=$PATH:~/.local/bin
 
 #K8 Helm
 RUN wget -q "https://storage.googleapis.com/kubernetes-helm/helm-v2.7.2-linux-amd64.tar.gz" -O helm.tar.gz && \
