@@ -18,8 +18,16 @@ Note: on windows to ensure `$PWD` works, set this in your bash terminal: ` expor
 
 Run this:
 
+### Windows 
+
 ```
 docker run -it --name kube-tools -v $PWD:/var/lib/src -v /C/Users/docker/kube-tools:/root/.kube --rm -p 8001:8001 --workdir /var/lib/src aimvector/kube-tools:latest bash
+```
+
+### Linux 
+
+```
+docker run -it --name kube-tools -v $PWD:/var/lib/src -v ~/.kube/config:/root/.kube/config --rm -p 8001:8001 --workdir /var/lib/src kube-tools bash
 ```
 
 Once in, you can access the tools:
