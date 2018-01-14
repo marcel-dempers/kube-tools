@@ -14,9 +14,8 @@ This docker image includes:
 You can persist `kubeconfig` by mounting a volume.
 I also mount my local directory into the container so i can pass files around to `kubectl` and `helm`
 
-Note: on windows to ensure `$PWD` works, set this in your bash terminal: ` export MSYS_NO_PATHCONV=1`
+Note: On windows to ensure `$PWD` works, set this in your bash terminal: ` export MSYS_NO_PATHCONV=1`
 
-Run this:
 
 ### Windows 
 
@@ -25,6 +24,14 @@ docker run -it --name kube-tools -v $PWD:/var/lib/src -v /C/Users/docker/kube-to
 ```
 
 ### Linux 
+
+Setup an alias for `kubetools`
+
+```
+echo "alias kubetools='docker run -it --name kube-tools -v \$PWD:/var/lib/src -v ~/.kube/config:/root/.kube/config --rm -p 8001:8001 --workdir /var/lib/src kube-tools bash'" >> ~/.bashrc
+
+```
+Or just run the image:
 
 ```
 docker run -it --name kube-tools -v $PWD:/var/lib/src -v ~/.kube/config:/root/.kube/config --rm -p 8001:8001 --workdir /var/lib/src kube-tools bash
