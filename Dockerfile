@@ -58,4 +58,4 @@ RUN echo "source /etc/profile.d/bash_completion.sh" >> ~/.bashrc
 
 WORKDIR /
 
-CMD ["bash"]
+ENTRYPOINT ["bash"]

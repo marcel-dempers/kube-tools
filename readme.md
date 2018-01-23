@@ -17,24 +17,24 @@ I also mount my local directory into the container so i can pass files around to
 Note: On windows to ensure `$PWD` works, set this in your bash terminal: ` export MSYS_NO_PATHCONV=1`
 
 
-### Windows 
+### Windows
 
 ```
-docker run -it --name kube-tools -v $PWD:/var/lib/src -v /C/Users/docker/kube-tools:/root/.kube --rm -p 8001:8001 --workdir /var/lib/src aimvector/kube-tools:latest bash
+docker run -it --name kube-tools -v $PWD:/var/lib/src -v /C/Users/docker/kube-tools:/root/.kube --rm -p 8001:8001 --workdir /var/lib/src aimvector/kube-tools:latest
 ```
 
-### Linux 
+### Linux
 
 Setup an alias for `kubetools`
 
 ```
-echo "alias kubetools='docker run -it --name kube-tools -v ~/.azure:/root/.azure -v \$PWD:/var/lib/src -v ~/.kube/config:/root/.kube/config --rm -p 8001:8001 --workdir /var/lib/src aimvector/kube-tools bash'" >> ~/.bashrc
+echo "alias kubetools='docker run -it --name kube-tools -v ~/.azure:/root/.azure -v \$PWD:/var/lib/src -v ~/.kube/config:/root/.kube/config --rm -p 8001:8001 --workdir /var/lib/src aimvector/kube-tools'" >> ~/.bashrc
 
 ```
 Or just run the image:
 
 ```
-docker run -it --name kube-tools -v ~/.azure:/root/.azure -v $PWD:/var/lib/src -v ~/.kube/config:/root/.kube/config --rm -p 8001:8001 --workdir /var/lib/src aimvector/kube-tools bash
+docker run -it --name kube-tools -v ~/.azure:/root/.azure -v $PWD:/var/lib/src -v ~/.kube/config:/root/.kube/config --rm -p 8001:8001 --workdir /var/lib/src aimvector/kube-tools
 ```
 
 Once in, you can access the tools:
