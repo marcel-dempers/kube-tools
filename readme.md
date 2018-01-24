@@ -16,14 +16,25 @@ I also mount my local directory into the container so i can pass files around to
 
 Note: On windows to ensure `$PWD` works, set this in your bash terminal: ` export MSYS_NO_PATHCONV=1`
 
+### How to Install
 
-### Windows
+You can install kube-tools via your bash profile and then simply run `kubetools` to start it up. 
+
+#### Windows
+
+Open the C:\Program Files\Git\etc\aliases.sh as Adminstrator and add the following script to a new line and the end of the file
 
 ```
-docker run -it --name kube-tools -v $PWD:/var/lib/src -v /C/Users/docker/kube-tools:/root/.kube --rm -p 8001:8001 --workdir /var/lib/src aimvector/kube-tools:latest
+alias kubetools='export MSYS_NO_PATHCONV=1; winpty docker run --rm -it --name kube-tools -v "$PWD":/var/lib/src -v /C/Users/docker/kube-tools/.azure:/root/.azure -v /C/Users/docker/kube-tools/.kube:/root/.kube --rm -p 8001:8001 aimvector/kube-tools:latest'
 ```
 
-### Linux
+If you cannot install it, you can manually run it with the docker run command below:
+
+```
+docker run -it --name kube-tools -v "$PWD":/var/lib/src -v /C/Users/docker/kube-tools/.azure:/root/.azure -v /C/Users/docker/kube-tools/.kube:/root/.kube --rm -p 8001:8001 --workdir /var/lib/src aimvector/kube-tools:latest
+```
+
+#### Linux
 
 Setup an alias for `kubetools`
 
