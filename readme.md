@@ -44,6 +44,14 @@ helm --help
 az --help
 ```
 
+Alternatively, grab running the following command and get `kubetools` add to your `/usr/local/bin`
+
+```bash
+wget -qO https://raw.githubusercontent.com/marcel-dempers/kube-tools/master/kubetools.sh ~/kubetools
+chdmox +x ~/kubetools
+sudo mv ~/kubetools /usr/local/bin/kubetools
+```
+
 ## Build from source
 
 If you wish to customise it, you can build it from source:
