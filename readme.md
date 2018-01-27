@@ -39,13 +39,13 @@ docker run -it --name kube-tools -v "$PWD":/var/lib/src -v /C/Users/docker/kube-
 Setup an alias for `kubetools`
 
 ```
-echo "alias kubetools='docker run -it --name kube-tools -v ~/.azure:/root/.azure -v \$PWD:/var/lib/src -v ~/.kube/config:/root/.kube/config --rm -p 8001:8001 --workdir /var/lib/src aimvector/kube-tools'" >> ~/.bashrc
+echo "alias kubetools='docker run -it --name kube-tools -v ~/.azure:/root/.azure -v \$PWD:/var/lib/src -v ~/.kube/config:/root/.kube/config --rm --network=host --workdir /var/lib/src aimvector/kube-tools'" >> ~/.bashrc
 
 ```
 Or just run the image:
 
 ```
-docker run -it --name kube-tools -v ~/.azure:/root/.azure -v $PWD:/var/lib/src -v ~/.kube/config:/root/.kube/config --rm -p 8001:8001 --workdir /var/lib/src aimvector/kube-tools
+docker run -it --name kube-tools -v ~/.azure:/root/.azure -v $PWD:/var/lib/src -v ~/.kube/config:/root/.kube/config --rm --network=host --workdir /var/lib/src aimvector/kube-tools
 ```
 
 Once in, you can access the tools:
@@ -53,6 +53,14 @@ Once in, you can access the tools:
 kubectl --help
 helm --help
 az --help
+```
+
+Alternatively, grab running the following command and get `kubetools` add to your `/usr/local/bin`
+
+```bash
+wget -qO https://raw.githubusercontent.com/marcel-dempers/kube-tools/master/kubetools.sh ~/kubetools
+chdmox +x ~/kubetools
+sudo mv ~/kubetools /usr/local/bin/kubetools
 ```
 
 ## Build from source
