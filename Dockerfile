@@ -50,6 +50,24 @@ RUN /bin/bash -c 'TMP_PKG_DIR=$(mktemp -d); \
     pip install --no-cache-dir $all_modules; \
     pip install --no-cache-dir --force-reinstall --upgrade azure-nspkg azure-mgmt-nspkg;'
 
+
+# Kubens \ Kubectx
+RUN curl -L https://github.com/ahmetb/kubectx/archive/v0.4.0.tar.gz | tar xz \
+    && cd ./kubectx-0.4.0 \
+    && mv kubectx kubens utils.bash /usr/local/bin/ \
+    && chmod +x /usr/local/bin/kubectx \
+    && chmod +x /usr/local/bin/kubens \
+    && cat completion/kubectx.bash >> ~/.bashrc \
+    && cat completion/kubens.bash >> ~/.bashrc \
+    && cd ../ \
+    && rm -fr ./kubectx-0.4.0
+
+#  Heptio ark
+RUN mkdir ark-0.6.0 \
+    && curl -L https://github.com/heptio/ark/releases/download/v0.6.0/ark-v0.6.0-linux-amd64.tar.gz | tar xz \
+    && mv ark /usr/local/bin/ \
+    && chmod +x /usr/local/bin/ark
+
 # Tab completion
 RUN cat /azure-cli/az.completion >> ~/.bashrc
 RUN echo "" >> ~/.bashrc
