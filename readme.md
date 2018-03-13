@@ -25,13 +25,13 @@ You can install kube-tools via your bash profile and then simply run `kubetools`
 Open the C:\Program Files\Git\etc\aliases.sh as Adminstrator and add the following script to a new line and the end of the file
 
 ```
-alias kubetools='export MSYS_NO_PATHCONV=1; winpty docker run --rm -it --name kube-tools -v "$PWD":/var/lib/src -v /C/Users/docker/kube-tools/.azure:/root/.azure -v /C/Users/docker/kube-tools/.kube:/root/.kube --rm -p 8001:8001 aimvector/kube-tools:latest'
+alias kubetools='export MSYS_NO_PATHCONV=1; winpty docker run --rm -it  -v "$PWD":/var/lib/src -v /C/Users/docker/kube-tools/.azure:/root/.azure -v /C/Users/docker/kube-tools/.kube:/root/.kube --rm -p 8001:8001 aimvector/kube-tools:latest'
 ```
 
 If you cannot install it, you can manually run it with the docker run command below:
 
 ```
-docker run -it --name kube-tools -v "$PWD":/var/lib/src -v /C/Users/docker/kube-tools/.azure:/root/.azure -v /C/Users/docker/kube-tools/.kube:/root/.kube --rm -p 8001:8001 --workdir /var/lib/src aimvector/kube-tools:latest
+docker run -it  -v "$PWD":/var/lib/src -v /C/Users/docker/kube-tools/.azure:/root/.azure -v /C/Users/docker/kube-tools/.kube:/root/.kube --rm -p 8001:8001 --workdir /var/lib/src aimvector/kube-tools:latest
 ```
 
 #### Linux
@@ -39,13 +39,13 @@ docker run -it --name kube-tools -v "$PWD":/var/lib/src -v /C/Users/docker/kube-
 Setup an alias for `kubetools`
 
 ```
-echo "alias kubetools='docker run -it --name kube-tools -v ~/.azure:/root/.azure -v \$PWD:/var/lib/src -v ~/.kube/config:/root/.kube/config --rm --network=host --workdir /var/lib/src aimvector/kube-tools'" >> ~/.bashrc
+echo "alias kubetools='docker run -it --rm  -v ~/.azure:/root/.azure -v \$PWD:/var/lib/src -v ~/.kube/config:/root/.kube/config --rm --network=host --workdir /var/lib/src aimvector/kube-tools'" >> ~/.bashrc
 
 ```
 Or just run the image:
 
 ```
-docker run -it --name kube-tools -v ~/.azure:/root/.azure -v $PWD:/var/lib/src -v ~/.kube/config:/root/.kube/config --rm --network=host --workdir /var/lib/src aimvector/kube-tools
+docker run -it --rm  -v ~/.azure:/root/.azure -v $PWD:/var/lib/src -v ~/.kube/config:/root/.kube/config --rm --network=host --workdir /var/lib/src aimvector/kube-tools
 ```
 
 Once in, you can access the tools:
