@@ -39,13 +39,13 @@ docker run -it  -v "$PWD":/var/lib/src -v /C/Users/docker/kube-tools/.azure:/roo
 Setup an alias for `kubetools`
 
 ```
-echo "alias kubetools='docker run -it --rm  -v ~/.azure:/root/.azure -v \$PWD:/var/lib/src -v ~/.kube/config:/root/.kube/config --rm --network=host --workdir /var/lib/src aimvector/kube-tools'" >> ~/.bashrc
+echo "alias kubetools='docker run -it --rm  -v ~/.azure:/root/.azure -v \$PWD:/var/lib/src -v ~/.kube:/root/.kube --rm --network=host --workdir /var/lib/src aimvector/kube-tools'" >> ~/.bashrc
 
 ```
 Or just run the image:
 
 ```
-docker run -it --rm  -v ~/.azure:/root/.azure -v $PWD:/var/lib/src -v ~/.kube/config:/root/.kube/config --rm --network=host --workdir /var/lib/src aimvector/kube-tools
+docker run -it --rm  -v ~/.azure:/root/.azure -v $PWD:/var/lib/src -v ~/.kube:/root/.kube --rm --network=host --workdir /var/lib/src aimvector/kube-tools
 ```
 
 Once in, you can access the tools:
