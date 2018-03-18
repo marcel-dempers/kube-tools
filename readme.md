@@ -22,7 +22,7 @@ You can install kube-tools via your bash profile and then simply run `kubetools`
 
 #### Windows
 
-Open the C:\Program Files\Git\etc\aliases.sh as Adminstrator and add the following script to a new line and the end of the file
+Open the C:\Program Files\Git\etc\profile.d\aliases.sh as Adminstrator and add the following script to a new line and the end of the file
 
 ```
 alias kubetools='export MSYS_NO_PATHCONV=1; winpty docker run --rm -it  -v "$PWD":/var/lib/src -v /C/Users/docker/kube-tools/.azure:/root/.azure -v /C/Users/docker/kube-tools/.kube:/root/.kube --rm -p 8001:8001 aimvector/kube-tools:latest'
