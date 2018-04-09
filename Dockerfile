@@ -12,7 +12,7 @@ RUN mv ./kubectl /usr/local/bin/kubectl
 EXPOSE 8001
 
 #K8 Helm
-RUN wget -q "https://storage.googleapis.com/kubernetes-helm/helm-v2.7.2-linux-amd64.tar.gz" -O helm.tar.gz && \
+RUN wget -q "https://storage.googleapis.com/kubernetes-helm/helm-v2.5.1-linux-amd64.tar.gz" -O helm.tar.gz && \
 tar -xzf helm.tar.gz && \
 rm helm.tar.gz && \
 mv linux-amd64/helm /usr/local/bin/helm
