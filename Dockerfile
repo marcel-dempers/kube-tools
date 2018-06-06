@@ -74,14 +74,14 @@ RUN apk add --no-cache bash openssh ca-certificates jq curl openssl git \
 
 RUN apk add --no-cache git
 
-# Kube-ps1
-COPY kubeps1.sh /root/kube-ps1/
+# Kube-ps1 - order so we can change themes without pulling kubeps1 every build
 RUN curl -L https://github.com/jonmosco/kube-ps1/archive/0.6.0.tar.gz | tar xz  && \
     cd ./kube-ps1-0.6.0 && \
     mkdir -p ~/kube-ps1 && \ 
     mv kube-ps1.sh ~/kube-ps1/ && \
-    chmod +x ~/kube-ps1/*.sh && \
-    rm -fr ./kube-ps1-0.6.0 && \
+    rm -fr ./kube-ps1-0.6.0
+COPY kubeps1.sh /root/kube-ps1/
+RUN chmod +x ~/kube-ps1/*.sh && \
     echo "source ~/kube-ps1/kube-ps1.sh" >> ~/.bashrc && \
     echo "source ~/kube-ps1/kubeps1.sh" >> ~/.bashrc && \
     echo "PROMPT_COMMAND=\"my_kube_ps1\"" >> ~/.bashrc
