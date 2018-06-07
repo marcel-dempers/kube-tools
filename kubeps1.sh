@@ -11,7 +11,7 @@ my_kube_ps1() {
     KUBE_PS1_BG_COLOR=''
     KUBE_PS1_SYMBOL="⎈"
     source ~/kube-ps1/kube-ps1.sh
-    PS1='\[\e[0;30;41m\][\u@\h]\[\e[0;0m\]\[\e[0;37;100m\][\w]\[\e[0;0m\] \[\e[0;33;49m\]$(parse_git_branch)\[\e[0;0m\] $(kube_ps1)\n'
+    PS1='\[\e[0;30;41m\][\u@\h]\[\e[0;0m\]\[\e[0;37;100m\][\W]\[\e[0;0m\] \[\e[0;33;49m\]$(parse_git_branch)\[\e[0;0m\] $(kube_ps1)\n'
     PS1+='  |--> '
     export PS1
 }
