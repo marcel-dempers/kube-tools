@@ -39,7 +39,7 @@ docker run -it  -v "$PWD":/var/lib/src -v /C/Users/docker/kube-tools/.azure:/roo
 Setup an alias for `kubetools`
 
 ```
-echo "alias kubetools='docker run -it --rm  -v ~/.azure:/root/.azure -v \$PWD:/var/lib/src -v ~/.kube:/root/.kube --rm --network=host --workdir /var/lib/src aimvector/kube-tools'" >> ~/.bashrc
+echo "alias kubetools='docker run -it --rm  -v ~/.azure:/root/.azure -v \$PWD:/kubetools -v ~/.kube:/root/.kube --rm --network=host --workdir /kubetools aimvector/kube-tools'" >> ~/.bashrc
 
 ```
 Or just run the image:

@@ -87,9 +87,9 @@ RUN chmod +x ~/kube-ps1/*.sh && \
     echo "PROMPT_COMMAND=\"my_kube_ps1\"" >> ~/.bashrc
 
 # Tab completion
-#RUN cat /azure-cli/az.completion >> ~/.bashrc
 RUN echo "" >> ~/.bashrc
 RUN echo "source <(kubectl completion bash)" >> ~/.bashrc
+RUN cat  /azure-cli/az.completion >> ~/.bashrc
 #RUN echo "source /etc/profile.d/bash_completion.sh" >> ~/.bashrc
 
 WORKDIR /
