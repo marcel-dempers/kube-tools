@@ -42,9 +42,9 @@ WORKDIR azure-cli
 ENV JP_VERSION="0.1.3"
 
 #Download the version we want!
-RUN wget -q "https://github.com/Azure/azure-cli/archive/azure-cli-2.0.35.tar.gz" -O azcli.tar.gz && \
+RUN wget -q "https://github.com/Azure/azure-cli/archive/azure-cli-2.0.37.tar.gz" -O azcli.tar.gz && \
     tar -xzf azcli.tar.gz && \
-    cp azure-cli-azure-cli-2.0.35/** /azure-cli/ -r && \
+    cp azure-cli-azure-cli-2.0.37/** /azure-cli/ -r && \
     rm azcli.tar.gz
 
 RUN apk add --no-cache bash openssh ca-certificates jq curl openssl git \
