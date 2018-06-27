@@ -86,6 +86,13 @@ RUN chmod +x ~/kube-ps1/*.sh && \
     echo "source ~/kube-ps1/kubeps1.sh" >> ~/.bashrc && \
     echo "PROMPT_COMMAND=\"my_kube_ps1\"" >> ~/.bashrc
 
+#Cloudfare SSL Tools
+
+RUN curl https://pkg.cfssl.org/R1.2/cfssl_linux-amd64 -o /usr/local/bin/cfssl && \
+    curl https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64 -o /usr/local/bin/cfssljson && \
+    chmod +x /usr/local/bin/cfssl && \
+    chmod +x /usr/local/bin/cfssljson
+
 # Tab completion
 RUN echo "" >> ~/.bashrc
 RUN echo "source <(kubectl completion bash)" >> ~/.bashrc
