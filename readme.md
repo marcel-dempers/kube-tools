@@ -8,13 +8,21 @@ This docker image includes:
 * Kubectl
 * Azure CLI
 * Helm
+* kubectx
+* kubens
+* Heptio ark
+* Cloudfare SSL tools (for boostrapping clusters)
 
-## Usage
+## Setup
 
-You can persist `kubeconfig` by mounting a volume.
-I also mount my local directory into the container so i can pass files around to `kubectl` and `helm`
+You will want to persist your files on your pc somewhere.
+On Windows, I do this in `C:\Users\<ME>\kube-tools\`
+On Linux, I use my home dir.
 
-Note: On windows to ensure `$PWD` works, set this in your bash terminal: ` export MSYS_NO_PATHCONV=1`
+Make sure the above folder exists!
+
+I recommend using Powershell for Windows, but for bash on windows:
+Ensure `$PWD` works, set this in your bash terminal: ` export MSYS_NO_PATHCONV=1`
 
 ### How to Install
 
@@ -22,16 +30,9 @@ You can install kube-tools via your bash profile and then simply run `kubetools`
 
 #### Windows
 
-Open the C:\Program Files\Git\etc\profile.d\aliases.sh as Adminstrator and add the following script to a new line and the end of the file
-
+Run it: (Replace the user directory with yours!)
 ```
-alias kubetools='export MSYS_NO_PATHCONV=1; winpty docker run --rm -it  -v "$PWD":/var/lib/src -v /C/Users/docker/kube-tools/.azure:/root/.azure -v /C/Users/docker/kube-tools/.kube:/root/.kube --rm -p 8001:8001 aimvector/kube-tools:latest'
-```
-
-If you cannot install it, you can manually run it with the docker run command below:
-
-```
-docker run -it  -v "$PWD":/var/lib/src -v /C/Users/docker/kube-tools/.azure:/root/.azure -v /C/Users/docker/kube-tools/.kube:/root/.kube --rm -p 8001:8001 --workdir /var/lib/src aimvector/kube-tools:latest
+docker run -it  -v ${PWD}:/var/lib/src -v /C/Users/<YOU>/kube-tools:/root --rm -p 8001:8001 --workdir /var/lib/src aimvector/kube-tools:latest
 ```
 
 #### Linux
@@ -53,6 +54,10 @@ Once in, you can access the tools:
 kubectl --help
 helm --help
 az --help
+kubectx
+kubens
+ark --help
+
 ```
 
 Alternatively, grab running the following command and get `kubetools` add to your `/usr/local/bin`
