@@ -42,9 +42,9 @@ WORKDIR azure-cli
 ENV JP_VERSION="0.1.3"
 
 #Download the version we want!
-RUN wget -q "https://github.com/Azure/azure-cli/archive/azure-cli-2.0.37.tar.gz" -O azcli.tar.gz && \
+RUN wget -q "https://github.com/Azure/azure-cli/archive/azure-cli-2.0.46.tar.gz" -O azcli.tar.gz && \
     tar -xzf azcli.tar.gz && \
-    cp azure-cli-azure-cli-2.0.37/** /azure-cli/ -r && \
+    cp azure-cli-azure-cli-2.0.46/** /azure-cli/ -r && \
     rm azcli.tar.gz
 
 RUN apk add --no-cache bash openssh ca-certificates jq curl openssl git \
@@ -98,7 +98,7 @@ RUN git clone https://github.com/scopatz/nanorc.git ~/.nano && \
     echo "include ~/.nano/*.nanorc" >> ~/.nanorc
 
 # Tab completion
-RUN echo "" >> ~/.bashrc
+#RUN echo "" >> ~/.bashrc
 RUN echo "source <(kubectl completion bash)" >> ~/.bashrc
 RUN cat  /azure-cli/az.completion >> ~/.bashrc
 #RUN echo "source /etc/profile.d/bash_completion.sh" >> ~/.bashrc
