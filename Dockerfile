@@ -95,7 +95,8 @@ RUN curl https://pkg.cfssl.org/R1.2/cfssl_linux-amd64 -o /usr/local/bin/cfssl &&
 
 #Syntax highlighting
 RUN git clone https://github.com/scopatz/nanorc.git ~/.nano && \
-    echo "include ~/.nano/*.nanorc" >> ~/.nanorc
+    echo "include ~/.nano/*.nanorc" >> ~/.nanorc && \
+    rm ~/.nano/hcl.nanorc && rm /root/.nano/prolog.nanorc #These cause errors-remove them
 
 # Tab completion
 #RUN echo "" >> ~/.bashrc
