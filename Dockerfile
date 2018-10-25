@@ -1,7 +1,7 @@
 FROM python:3.6.4-alpine3.7
 
 #Some Tools
-RUN apk add --no-cache curl ncurses-terminfo-base ncurses-terminfo readline ncurses-libs bash nano ncurses
+RUN apk add --no-cache curl ncurses-terminfo-base ncurses-terminfo readline ncurses-libs bash nano ncurses docker
 
 #Google Kubernetes control cmd
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
