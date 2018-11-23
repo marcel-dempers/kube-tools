@@ -1,7 +1,7 @@
 FROM python:3.6.4-alpine3.7
 
 #Some Tools
-RUN apk add --no-cache curl ncurses-terminfo-base ncurses-terminfo readline ncurses-libs bash nano ncurses docker
+RUN apk add --no-cache curl bash-completion ncurses-terminfo-base ncurses-terminfo readline ncurses-libs bash nano ncurses docker
 
 #Google Kubernetes control cmd
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
@@ -99,10 +99,10 @@ RUN git clone https://github.com/scopatz/nanorc.git ~/.nano && \
     rm ~/.nano/hcl.nanorc && rm /root/.nano/prolog.nanorc #These cause errors-remove them
 
 # Tab completion
-#RUN echo "" >> ~/.bashrc
-RUN echo "source <(kubectl completion bash)" >> ~/.bashrc
 RUN cat  /azure-cli/az.completion >> ~/.bashrc
-#RUN echo "source /etc/profile.d/bash_completion.sh" >> ~/.bashrc
+RUN echo -e "\n" >> ~/.bashrc
+RUN echo -e "source <(kubectl completion bash)" >> ~/.bashrc
+RUN echo "source /etc/profile.d/bash_completion.sh" >> ~/.bashrc
 
 WORKDIR /
 
