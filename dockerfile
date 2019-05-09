@@ -103,6 +103,7 @@ RUN cat  /azure-cli/az.completion >> ~/.bashrc
 RUN echo -e "\n" >> ~/.bashrc
 RUN echo -e "source <(kubectl completion bash)" >> ~/.bashrc
 RUN echo "source /etc/profile.d/bash_completion.sh" >> ~/.bashrc
+RUN echo "k=kubectl" >> ~/.bashrc
 
 WORKDIR /
 
