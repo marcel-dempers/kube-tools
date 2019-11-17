@@ -50,10 +50,14 @@ RUN git clone https://github.com/scopatz/nanorc.git ~/.nano && \
 #Azure CLI
 WORKDIR azure-cli
 
+ENV AZ_CLI_VERSION=2.0.76
 #Download the version we want!
-RUN wget -q "https://codeload.github.com/Azure/azure-cli/tar.gz/azure-cli-vm-2.0.65" -O azcli.tar.gz && \
-    tar -xzf azcli.tar.gz && ls -l && \
-    cp azure-cli-azure-cli-vm-2.0.65/** /azure-cli/ -r && \
+
+#RUN wget -q "https://codeload.github.com/Azure/azure-cli/tar.gz/azure-cli-vm-${AZ_CLI_VERSION}" -O azcli.tar.gz && \
+RUN wget -q "https://github.com/Azure/azure-cli/archive/azure-cli-${AZ_CLI_VERSION}.tar.gz" -O azcli.tar.gz && \
+    tar -xzf azcli.tar.gz && ls -l
+
+RUN cp azure-cli-azure-cli-${AZ_CLI_VERSION}/** /azure-cli/ -r && \
     rm azcli.tar.gz
 
 RUN apk add --no-cache bash openssh ca-certificates jq curl openssl git zip \
