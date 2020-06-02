@@ -50,7 +50,7 @@ RUN git clone https://github.com/scopatz/nanorc.git ~/.nano && \
 #Azure CLI
 WORKDIR azure-cli
 
-ENV AZ_CLI_VERSION=2.0.76
+ENV AZ_CLI_VERSION=2.6.0
 #Download the version we want!
 
 #RUN wget -q "https://codeload.github.com/Azure/azure-cli/tar.gz/azure-cli-vm-${AZ_CLI_VERSION}" -O azcli.tar.gz && \
@@ -94,31 +94,6 @@ RUN /bin/bash -c 'TMP_PKG_DIR=$(mktemp -d); \
 
 RUN rm -rf ./azure-cli && \
     dos2unix /root/.bashrc /usr/local/bin/az
-# RUN apk add --no-cache bash openssh ca-certificates jq curl openssl git \
-#  && apk add --no-cache --virtual .build-deps gcc make openssl-dev libffi-dev musl-dev \
-#  && update-ca-certificates \
-#  && curl https://github.com/jmespath/jp/releases/download/${JP_VERSION}/jp-linux-amd64 -o /usr/local/bin/jp \
-#  && chmod +x /usr/local/bin/jp \
-#  && pip install --no-cache-dir --upgrade jmespath-terminal \
-#  && /bin/bash -c 'TMP_PKG_DIR=$(mktemp -d); \
-#     for d in src/azure-cli src/azure-cli-core src/azure-cli-nspkg src/azure-cli-command_modules-nspkg src/command_modules/azure-cli-*/; \
-#     do cd $d; echo $d; python setup.py bdist_wheel -d $TMP_PKG_DIR; cd -; \
-#     done; \
-#     [ -d privates ] && cp privates/*.whl $TMP_PKG_DIR; \
-#     all_modules=`find $TMP_PKG_DIR -name "*.whl"`; \
-#     pip install --no-cache-dir $all_modules; \
-#     pip install --no-cache-dir --force-reinstall --upgrade azure-nspkg azure-mgmt-nspkg;' \
-#  && cat /azure-cli/az.completion > ~/.bashrc \
-#  && runDeps="$( \
-#     scanelf --needed --nobanner --recursive /usr/local \
-#         | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
-#         | sort -u \
-#         | xargs -r apk info --installed \
-#         | sort -u \
-#     )" \
-#  && apk add --virtual .rundeps $runDeps \
-#  && apk del .build-deps
-
 
 # Tab completion
 #RUN cat  /azure-cli/az.completion >> ~/.bashrc
