@@ -32,7 +32,10 @@ You can install kube-tools via your bash profile and then simply run `kubetools`
 
 Run it: (Replace the user directory with yours!)
 ```
-docker run -it  -v ${PWD}:/var/lib/src -v $home/kube-tools:/root --rm --workdir /var/lib/src aimvector/kube-tools:latest
+docker run -it  -v ${PWD}:/work `
+-v $home/kube-tools/.azure:/root/.azure `
+-v $home/kube-tools/.kube:/root/.kube `
+--rm --workdir /work aimvector/kube-tools:latest
 ```
 
 #### Linux
