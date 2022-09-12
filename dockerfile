@@ -43,7 +43,7 @@ RUN git clone https://github.com/scopatz/nanorc.git ~/.nano && \
 #Azure CLI
 WORKDIR azure-cli
 
-ENV AZ_CLI_VERSION=2.31.0
+ENV AZ_CLI_VERSION=2.39.0
 #Download the version we want!
 
 #RUN wget -q "https://codeload.github.com/Azure/azure-cli/tar.gz/azure-cli-vm-${AZ_CLI_VERSION}" -O azcli.tar.gz && \
