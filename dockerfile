@@ -1,4 +1,4 @@
-FROM python:3.8.9-alpine3.13
+FROM python:3.10-alpine
 
 #Some Tools
 RUN apk add --no-cache curl bash-completion ncurses-terminfo-base ncurses-terminfo readline ncurses-libs bash nano ncurses docker git
@@ -43,10 +43,9 @@ RUN git clone https://github.com/scopatz/nanorc.git ~/.nano && \
 #Azure CLI
 WORKDIR azure-cli
 
-ENV AZ_CLI_VERSION=2.39.0
+ENV AZ_CLI_VERSION=2.40.0
 #Download the version we want!
 
-#RUN wget -q "https://codeload.github.com/Azure/azure-cli/tar.gz/azure-cli-vm-${AZ_CLI_VERSION}" -O azcli.tar.gz && \
 RUN wget -q "https://github.com/Azure/azure-cli/archive/azure-cli-${AZ_CLI_VERSION}.tar.gz" -O azcli.tar.gz && \
     tar -xzf azcli.tar.gz && ls -l
 
@@ -62,8 +61,7 @@ RUN apk add --no-cache bash openssh ca-certificates jq curl openssl perl git zip
 ARG JP_VERSION="0.1.3"
 
 RUN curl -L https://github.com/jmespath/jp/releases/download/${JP_VERSION}/jp-linux-amd64 -o /usr/local/bin/jp \
- && chmod +x /usr/local/bin/jp \
- && pip install --no-cache-dir --upgrade jmespath-terminal
+ && chmod +x /usr/local/bin/jp
 
 # 1. Build packages and store in tmp dir
 # 2. Install the cli and the other command modules that weren't included
@@ -81,6 +79,7 @@ RUN ./scripts/install_full.sh \
 # Remove CLI source code from the final image and normalize line endings.
 RUN rm -rf ./azure-cli && \
     dos2unix /root/.bashrc /usr/local/bin/az
+ENV AZ_INSTALLER=DOCKER
 
 # Tab completion
 #RUN cat  /azure-cli/az.completion >> ~/.bashrc
