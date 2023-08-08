@@ -43,7 +43,7 @@ RUN git clone https://github.com/scopatz/nanorc.git ~/.nano && \
 #Azure CLI
 WORKDIR azure-cli
 
-ENV AZ_CLI_VERSION=2.40.0
+ENV AZ_CLI_VERSION=2.50.0
 #Download the version we want!
 
 RUN wget -q "https://github.com/Azure/azure-cli/archive/azure-cli-${AZ_CLI_VERSION}.tar.gz" -O azcli.tar.gz && \
@@ -106,8 +106,6 @@ RUN chmod +x ~/kube-ps1/*.sh && \
     echo "source ~/kube-ps1/kubeps1.sh" >> ~/.bashrc && \
     echo "PROMPT_COMMAND=\"my_kube_ps1\"" >> ~/.bashrc
 
-#tools
-COPY tools/ /tools/
 ENV KUBE_EDITOR nano
 
 WORKDIR /
