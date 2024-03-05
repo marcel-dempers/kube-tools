@@ -86,7 +86,6 @@ ENV AZ_INSTALLER=DOCKER
 #RUN echo -e "\n" >> ~/.bashrc
 RUN echo -e "source <(kubectl completion bash)" >> ~/.bashrc
 RUN echo "source /etc/profile.d/bash_completion.sh" >> ~/.bashrc
-RUN echo "alias k=kubectl" >> ~/.bashrc
 
 #Azure kubelogin
 RUN curl -L https://github.com/Azure/kubelogin/releases/download/v0.0.13/kubelogin-linux-amd64.zip -o /tmp/kubelogin.zip && \
@@ -105,6 +104,11 @@ RUN chmod +x ~/kube-ps1/*.sh && \
     echo "source ~/kube-ps1/kube-ps1.sh" >> ~/.bashrc && \
     echo "source ~/kube-ps1/kubeps1.sh" >> ~/.bashrc && \
     echo "PROMPT_COMMAND=\"my_kube_ps1\"" >> ~/.bashrc
+
+# Aliases
+RUN echo "alias k=kubectl" >> ~/.bashrc
+RUN echo "alias kubedev=\"export KUBECONFIG=~/.kube/dev-config\""  >> ~/.bashrc
+RUN echo "alias kubeprod=\"export KUBECONFIG=~/.kube/production-config\""  >> ~/.bashrc
 
 ENV KUBE_EDITOR nano
 
