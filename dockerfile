@@ -12,7 +12,7 @@ RUN mv ./kubectl /usr/local/bin/kubectl
 EXPOSE 8001
 
 #K8 Helm
-RUN wget -q "https://get.helm.sh/helm-v3.5.4-linux-amd64.tar.gz" -O helm.tar.gz && \
+RUN wget -q "https://get.helm.sh/helm-v3.14.4-linux-amd64.tar.gz" -O helm.tar.gz && \
 tar -xzf helm.tar.gz && \
 rm helm.tar.gz && \
 mv linux-amd64/helm /usr/local/bin/helm
