@@ -5,7 +5,7 @@ FROM python:3.10-alpine
 #########################################################
 
 # Commented out version will be skipped at build
-ARG TERRAFORM_VERSION="1.5.5"       # Terraform version
+ARG TERRAFORM_VERSION="1.9.8"       # Terraform version
 ARG HELM_VERSION="3.14.4"           # Helm version
 ARG K9S_VERSION="0.32.5"            # K9S version
 ARG KTX_VERSION="0.4.0"             # Kubens \ Kubectx version
@@ -260,7 +260,6 @@ RUN if [[ -n "$DOCTL_VERSION" ]] ; then \
             && mv doctl /usr/local/bin/ \
     ; else : echo "DigitalOcean CLI skipped" ; fi
 
-
 #########################################################
 # Github CLI
 #########################################################
@@ -294,7 +293,19 @@ RUN if [[ -n "$CREATE_ALIASES" ]] ; then \
         && echo "alias kns=kubens" >> ~/.bashrc \
         && echo "alias kubedev=\"export KUBECONFIG=~/.kube/dev-config\""  >> ~/.bashrc \
         && echo "alias kubeprod=\"export KUBECONFIG=~/.kube/production-config\""  >> ~/.bashrc \
+        && echo "alias tf=terraform"  >> ~/.bashrc \
     ; else : echo "Clean line endings skipped" ; fi
+
+
+#########################################################
+# Startup script
+#########################################################
+
+COPY scripts/startup.sh /root/.scripts/startup.sh
+RUN chmod +x /root/.scripts/startup.sh \
+    && if [[ -n "$CLEAN_LINE_ENDINGS" ]] ; then \
+           dos2unix /root/.scripts/startup.sh \
+       ;  else : echo "Clean line endings skipped" ; fi
 
 
 #########################################################
@@ -305,4 +316,4 @@ ENV KUBE_EDITOR=nano
 WORKDIR /
 
 ENTRYPOINT ["bash", "-c"]
-CMD ["/root/.scripts/merge-kubeconfigs.sh && bash"]
+CMD ["/root/.scripts/startup.sh && bash"]
