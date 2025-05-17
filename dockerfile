@@ -20,7 +20,7 @@ ARG AZ_KUBELOGIN_VERSION="0.0.13"   # Azure CLI version
 ARG CLEAN_LINE_ENDINGS=true       # Cleans line endings for compatibility
 ARG SYNTAX_HIGHLIGHTING=true      # Enable syntax highlighting
 ARG CREATE_ALIASES=true           # Create aliasses
-ARG AUTO_MERGE_CONFIGS=true       # Auto merge kube kubeconfigs
+ARG AUTO_MERGE_CONFIGS=false       # Auto merge kube kubeconfigs
 ARG CMD_COMPLETION=true           # Bash completion
 ARG THEMING=true                  # Theming
 
