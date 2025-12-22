@@ -22,15 +22,16 @@ On Linux, I use my home dir.
 Make sure the above folder exists!
 
 I recommend using Powershell for Windows, but for bash on windows:
-Ensure `$PWD` works, set this in your bash terminal: ` export MSYS_NO_PATHCONV=1`
+Ensure `$PWD` works, set this in your bash terminal: `export MSYS_NO_PATHCONV=1`
 
 ### How to Install
 
-You can install kube-tools via your bash profile and then simply run `kubetools` to start it up. 
+You can install kube-tools via your bash profile and then simply run `kubetools` to start it up.
 
 #### Windows
 
 Run it: (Replace the user directory with yours!)
+
 ```
 docker run -it  -v ${PWD}:/work `
 -v $home/kube-tools/.azure:/root/.azure `
@@ -46,6 +47,7 @@ Setup an alias for `kubetools`
 echo "alias kubetools='docker run -it --rm  -v ~/.azure:/root/.azure -v \$PWD:/kubetools -v ~/.kube:/root/.kube --rm --network=host --workdir /kubetools aimvector/kube-tools'" >> ~/.bashrc
 
 ```
+
 Or just run the image:
 
 ```
@@ -53,6 +55,7 @@ docker run -it --rm  -v ~/.azure:/root/.azure -v $PWD:/var/lib/src -v ~/.kube:/r
 ```
 
 Once in, you can access the tools:
+
 ```
 kubectl --help
 helm --help
@@ -78,3 +81,5 @@ If you wish to customise it, you can build it from source:
 ```
 docker build . -t kube-tools
 ```
+
+## Testing?
