@@ -17,7 +17,6 @@ tar -xzf helm.tar.gz && \
 rm helm.tar.gz && \
 mv linux-amd64/helm /usr/local/bin/helm
 
-
 # Kubens \ Kubectx
 RUN curl -L https://github.com/ahmetb/kubectx/archive/v0.4.0.tar.gz | tar xz \
     && cd ./kubectx-0.4.0 \
@@ -105,10 +104,16 @@ RUN chmod +x ~/kube-ps1/*.sh && \
     echo "source ~/kube-ps1/kubeps1.sh" >> ~/.bashrc && \
     echo "PROMPT_COMMAND=\"my_kube_ps1\"" >> ~/.bashrc
 
+RUN curl -sL https://github.com/cli/cli/releases/download/v2.97.0/gh_2.97.0_linux_amd64.tar.gz -o /tmp/ghcli.tar.gz && \
+    tar -xzf /tmp/ghcli.tar.gz -C /tmp/ && \
+    mv /tmp/gh_2.97.0_linux_amd64/bin/gh /usr/local/bin/gh && \
+    rm -rf /tmp/ghcli.tar.gz /tmp/gh_2.97.0_linux_amd64
+
 # Aliases
 RUN echo "alias k=kubectl" >> ~/.bashrc
 RUN echo "alias kubedev=\"export KUBECONFIG=~/.kube/dev-config\""  >> ~/.bashrc
 RUN echo "alias kubeprod=\"export KUBECONFIG=~/.kube/production-config\""  >> ~/.bashrc
+RUN echo "alias kubemarcel=\"export KUBECONFIG=~/.kube/marceldempers-v3\""  >> ~/.bashrc
 
 ENV KUBE_EDITOR nano
 
